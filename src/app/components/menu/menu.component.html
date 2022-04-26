@@ -1,0 +1,19 @@
+<ng-container>
+  <mat-menu #mainMenu="matMenu" [overlapTrigger]="false">
+    <ng-container *ngFor="let item of filteredList">
+      <ng-container *ngIf="filterList(item.id).length > 0">
+        <button mat-menu-item [matMenuTriggerFor]="menu.mainMenu">
+          {{ item.name }}
+        </button>
+        <app-menu
+          #menu
+          [completeList]="completeList"
+          [filteredList]="filterList(item.id)"
+        ></app-menu>
+      </ng-container>
+      <ng-container *ngIf="filterList(item.id).length == 0">
+        <button mat-menu-item color="primary">{{ item.name }} vacio</button>
+      </ng-container>
+    </ng-container>
+  </mat-menu>
+</ng-container>
